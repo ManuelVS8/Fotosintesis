@@ -551,6 +551,7 @@
     let finalTimeVal = 0; 
     
     // ORDEN FIJO DE JUEGOS
+    // No se aplica sort() a este array.
     let gameFlowOrder = ['game1', 'game2', 'game3']; 
     let currentGameStep = 0;
 
@@ -688,7 +689,7 @@
     /* --- LÓGICA DE FLUJO DE JUEGOS --- */
     function initGameSequence() {
         // El orden ahora es FIJO: ['game1', 'game2', 'game3']
-        // Ya definido globalmente.
+        // NO se aplica .sort() a gameFlowOrder
         currentGameStep = 0;
         
         scoreData = {
@@ -757,6 +758,7 @@
         g1Attempts = 0;
         scoreData.g1Correct = 0;
 
+        // Mezclar respuestas para el banco (Esto es correcto, afecta solo a las palabras, no al orden del juego)
         const shuffledAnswers = [...g1Answers].sort(() => Math.random() - 0.5);
         
         shuffledAnswers.forEach(word => {
@@ -904,6 +906,7 @@
         document.getElementById('continueFromGame2Btn').classList.add('hidden');
         scoreData.g2Correct = 0;
 
+        // Mezclar las tarjetas para que el usuario las ordene (Correcto, afecta solo al juego interno)
         let cardObjects = g2Phases.map((text, index) => ({ text, originalIndex: index }));
         cardObjects.sort(() => Math.random() - 0.5);
 
@@ -1040,6 +1043,7 @@
         let terms = g3Pairs.map((p, i) => ({ text: p.term, id: i, type: 'term' }));
         let defs = g3Pairs.map((p, i) => ({ text: p.def, id: i, type: 'def' }));
 
+        // Mezclar términos y definiciones (Correcto, afecta solo al juego interno)
         terms.sort(() => Math.random() - 0.5);
         defs.sort(() => Math.random() - 0.5);
 
